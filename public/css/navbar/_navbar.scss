@@ -1,0 +1,40 @@
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  box-shadow: -1px 0px 10px black;
+  .logo {
+    font-size: 30px;
+    letter-spacing: 3px;
+    color: #092532;
+    h3 {
+      font-weight: 400;
+    }
+  }
+  .navlist {
+    display: flex;
+    .nav-item {
+      margin-right: 40px;
+      .nav-link {
+        color: #222831;
+        font-size: 17px;
+        letter-spacing: 2px;
+        padding: 10px 20px;
+        &:hover {
+          transition: 0.5s ease-in-out;
+          color: #092532;
+        }
+      }
+      .signup {
+        border: 2px solid #092532;
+        &:hover {
+          transition: 0.5s ease-in-out;
+          background-color: #092532;
+          color: #ffff;
+        }
+      }
+    }
+  }
+}

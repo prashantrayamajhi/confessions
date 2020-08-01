@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.error-msg {
+  width: 80%;
+  margin: auto;
+  color: red;
+  text-align: start;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+@import "navbar/navbar";
+@import "form/form";

@@ -1,0 +1,60 @@
+.form-container {
+  max-width: 100%;
+  min-height: 80vh;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .left,
+  .right {
+    flex: 1;
+    text-align: center;
+  }
+  .left {
+    h1 {
+      font-size: 5rem;
+      letter-spacing: 8px;
+    }
+    .confess-text {
+      color: #ff847c;
+    }
+  }
+  .right {
+    padding-top: 70px;
+    .form {
+      width: 80%;
+      margin: auto;
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 55px;
+        input {
+          border-top: none;
+          border-right: none;
+          border-left: none;
+          outline: none;
+          font-size: 22px;
+          padding: 5px;
+        }
+        .form-btn {
+          outline: none;
+          border: none;
+          width: 30%;
+          font-size: 22px;
+          padding: 5px 0;
+          cursor: pointer;
+          letter-spacing: 1px;
+          background-color: #092532;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .left {
+    display: none;
+  }
+}
