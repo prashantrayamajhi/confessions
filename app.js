@@ -20,12 +20,12 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// DB config
-const db = require("./config/keys").MongoURI;
-
 // connect to mongoose
 mongoose
-  .connect(db, { useUnifiedTopology: true, useNewUrlParser: true })
+  .connect(process.env.DATABASE_URL, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+  })
   .then(() => console.log("MongoDB Connected"))
   .catch((e) => console.log(e));
 
@@ -39,4 +39,4 @@ app.use(expressLayouts);
 // -------------------------------- Home Route ------------------------------ //
 app.use("/", require("./routes/home"));
 
-app.listen(3000 || process.env.PORT, console.log("Listening on port 3000"));
+app.listen(process.env.PORT || 3000, console.log("Listening on port 3000"));
