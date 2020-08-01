@@ -52,14 +52,13 @@ router.post("/signup", (req, res) => {
           confirm_password,
         });
       } else {
+        const newUser = new User({
+          username: username,
+          password: password,
+        });
         bcrypt.genSalt(10, (err, salt) => {
-          const newUser = new User({
-            username: username,
-            password: password,
-          });
           bcrypt.hash(newUser.password, salt, (err, hash) => {
             if (err) throw err;
-
             newUser.password = hash;
             newUser
               .save()
