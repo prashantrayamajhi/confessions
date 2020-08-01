@@ -38,3 +38,36 @@
     }
   }
 }
+
+@media (max-width: 800px) {
+  .navbar {
+    .logo {
+      font-size: 15px;
+    }
+    .navlist {
+      .nav-item {
+        margin-right: 10px;
+        .nav-link {
+          font-size: 13px;
+          padding: 5px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .navbar {
+    padding: 20px 15px;
+    .logo {
+      font-size: 12px;
+    }
+    .navlist {
+      .nav-item {
+        .nav-link {
+          letter-spacing: normal;
+        }
+      }
+    }
+  }
+}
