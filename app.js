@@ -20,12 +20,12 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// DB config
-const db = require("./config/keys").MongoURI;
-
 // connect to mongoose
 mongoose
-  .connect(db, { useUnifiedTopology: true, useNewUrlParser: true })
+  .connect(process.env.DATABASE_URL, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+  })
   .then(() => console.log("MongoDB Connected"))
   .catch((e) => console.log(e));
 
