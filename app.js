@@ -29,7 +29,7 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch((e) => console.log(e));
 
-const User = require("./models/Users");
+const User = require(__dirname + "/models/Users");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + "/public"));
