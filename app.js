@@ -29,7 +29,7 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch((e) => console.log(e));
 
-const User = require("./models/Users");
+const User = require(__dirname + "/models/Users");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + "/public"));
@@ -37,6 +37,6 @@ app.set("view engine", "ejs");
 app.use(expressLayouts);
 
 // -------------------------------- Home Route ------------------------------ //
-app.use("/", require("./routes/home"));
+app.use("/", require(__dirname + "/routes/home"));
 
 app.listen(process.env.PORT || 3000, console.log("Listening on port 3000"));
