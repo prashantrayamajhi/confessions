@@ -4,31 +4,39 @@ const bcrypt = require("bcryptjs");
 const User = require("./../models/Users");
 const passport = require("passport");
 
-router.get("/", isAuthenticated, (req, res) => {
+router.get("/", checkAuthenticated, (req, res) => {
   res.render("home.ejs");
 });
 
-router.get("/login", (req, res) => {
+router.get("/login", checkDeAuthenticated, (req, res) => {
   res.render("login");
 });
 
-router.get("/signup", (req, res) => {
+router.get("/signup", checkDeAuthenticated, (req, res) => {
   res.render("signup");
 });
 
 // logout
-router.get("/logout", isAuthenticated, (req, res) => {
-  req.logOut;
+router.get("/logout", (req, res) => {
+  req.logout();
   res.render("login");
 });
 
 // functions
 
-function isAuthenticated(req, res, next) {
-  if (req.isAuthenticated) {
+function checkAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
     next();
   } else {
     res.redirect("/login");
+  }
+}
+
+function checkDeAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    res.redirect("/");
+  } else {
+    next();
   }
 }
 
