@@ -49,6 +49,7 @@ app.use(expressLayouts);
 
 // -------------------------------- Home Route ------------------------------ //
 app.use("/", require(__dirname + "/routes/home"));
+app.use("/user", require(__dirname + "/routes/user"));
 
 app.listen(process.env.PORT || 3000, () =>
   console.log("Listening on port 3000")

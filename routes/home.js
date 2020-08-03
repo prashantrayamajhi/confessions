@@ -5,23 +5,16 @@ const User = require("./../models/Users");
 const passport = require("passport");
 
 router.get("/", checkAuthenticated, (req, res) => {
-  res.render("home.ejs");
-});
-
-router.get("/login", checkDeAuthenticated, (req, res) => {
-  res.render("login");
+  res.render("user/home.ejs");
 });
 
 router.get("/signup", checkDeAuthenticated, (req, res) => {
   res.render("signup");
 });
 
-// logout
-router.get("/logout", (req, res) => {
-  req.logout();
+router.get("/login", checkDeAuthenticated, (req, res) => {
   res.render("login");
 });
-
 // functions
 
 function checkAuthenticated(req, res, next) {
@@ -34,7 +27,7 @@ function checkAuthenticated(req, res, next) {
 
 function checkDeAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-    res.redirect("/");
+    res.redirect("user/");
   } else {
     next();
   }
@@ -104,7 +97,7 @@ router.post("/signup", (req, res) => {
 // ------------------------------------------------------------ //
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/user/",
     failureRedirect: "/login",
     failureFlash: true,
   })(req, res, next);

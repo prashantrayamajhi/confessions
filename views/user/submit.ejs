@@ -1,0 +1,43 @@
+<nav class="navbar">
+  <div class="logo">
+    <h3>CONFESS</h3>
+  </div>
+  <ul class="navlist">
+    <li class="nav-item">
+      <a href="/user/" class="nav-link signup">Home</a>
+    </li>
+    <li class="nav-item"><a href="/user/logout" class="nav-link">Logout</a></li>
+  </ul>
+</nav>
+
+<!----------------------------------------------------------------------------------->
+
+<div class="error-message-wrapper">
+  <%-include("./../partials/messages")-%>
+</div>
+<div class="form-container">
+  <div class="right">
+    <form class="form" method="post" action="/user/submit">
+      <div class="form-group">
+        <input
+          type="text"
+          name="title"
+          placeholder="Title"
+          value="<%= typeof title != 'undefined' ? title : ''%>"
+          required
+          autocomplete="off"
+        />
+      </div>
+      <div class="form-group">
+        <textarea
+          name="confession"
+          value="<%= typeof confession != 'undefined' ? confession : ''%>"
+          required
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="form-btn">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
