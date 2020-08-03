@@ -6,8 +6,12 @@ const expressLayouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
+const flash = require("express-flash");
 
 const app = express();
+app.use(flash());
+
+require("./config/passport")(passport);
 
 app.use(
   session({
@@ -19,6 +23,13 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use((req, res, next) => {
+  res.locals.error = req.flash("error");
+  res.locals.error_msg = req.flash("error_msg");
+  res.locals.success_msg = req.flash("success_msg");
+  next();
+});
 
 // connect to mongoose
 mongoose

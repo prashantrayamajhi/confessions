@@ -1,3 +1,23 @@
 <% if(typeof errors != 'undefined'){ %> <% errors.forEach((e)=>{ %>
 <p class="error-msg"><%=e.msg%></p>
 <% });} %>
+
+<!--------------------------------------->
+<% if(success_msg != ''){ %>
+<p class="error-msg"><%=success_msg%></p>
+<% } %>
+
+<!--------------------------------------->
+<% if(success_msg != ''){ %>
+<p class="error-msg"><%=success_msg%></p>
+<% } %>
+
+<!--------------------------------------->
+<% if(error_msg != ''){ %>
+<p class="error-msg"><%=error_msg%></p>
+<% } %>
+
+<!--------------------------------------->
+<% if(error != ''){ %>
+<p class="error-msg"><%=error%></p>
+<% } %>
