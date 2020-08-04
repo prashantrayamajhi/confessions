@@ -3,9 +3,16 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const User = require("./../models/Users");
 const passport = require("passport");
+const Confession = require("./../models/Confessions");
 
 router.get("/", checkAuthenticated, (req, res) => {
-  res.render("user/home.ejs");
+  Confession.find((err, confessions) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("user/home.ejs", { confessions: confessions });
+    }
+  });
 });
 
 router.get("/signup", checkDeAuthenticated, (req, res) => {
