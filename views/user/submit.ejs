@@ -29,11 +29,9 @@
         />
       </div>
       <div class="form-group">
-        <textarea
-          name="confession"
-          value="<%= typeof confession != 'undefined' ? confession : ''%>"
-          required
-        ></textarea>
+        <textarea name="confession" placeholder="Confession" required>
+<%= typeof confession != 'undefined' ? confession : ''%></textarea
+        >
       </div>
       <div class="form-group">
         <button type="submit" class="form-btn">Submit</button>
