@@ -30,6 +30,20 @@
         line-height: 2.2rem;
       }
     }
+    .details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid black;
+      padding: 13px 50px;
+      .delete-btn {
+        color: #f0ece3;
+        background-color: #ed6663;
+        padding: 10px 20px;
+        letter-spacing: 1px;
+        font-size: 15px;
+      }
+    }
   }
 }
 

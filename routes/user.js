@@ -7,13 +7,16 @@ router.get("/", checkAuthenticated, (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      res.render("user/home.ejs", { confessions: confessions });
+      res.render("user/home.ejs", {
+        confessions: confessions,
+      });
     }
   });
 });
 
 router.get("/submit", (req, res) => {
-  res.render("user/submit");
+  const username = req.user.username;
+  res.render("user/submit", { username: username });
 });
 
 // logout
@@ -43,6 +46,8 @@ router.post("/submit", (req, res) => {
   const errors = [];
   let title = req.body.title;
   let confession = req.body.confession;
+  let username = req.body.username;
+  console.log(username);
   title = title.trim();
   confession = confession.trim();
 
@@ -64,6 +69,7 @@ router.post("/submit", (req, res) => {
     const c = new Confession({
       title: title,
       confession: confession,
+      username: username,
     });
     c.save()
       .then((text) => {

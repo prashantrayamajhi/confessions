@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
 
 const ConfessionSchema = new mongoose.Schema({
-  //   username: {
-  //     type: String,
-  //     required: true,
-  //   },
+  username: {
+    type: String,
+  },
   title: {
     type: String,
     required: true,

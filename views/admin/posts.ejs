@@ -1,0 +1,37 @@
+<nav class="navbar">
+  <div class="logo">
+    <h3>CONFESS</h3>
+  </div>
+  <ul class="navlist">
+    <li class="nav-item">
+      <a href="/admin/" class="nav-link">Home</a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/users" class="nav-link">Users</a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/logout" class="nav-link signup">Logout</a>
+    </li>
+  </ul>
+</nav>
+
+<!----------------------------------------------------------------------------------->
+
+<div class="content-wrapper">
+  <% confessions.reverse().forEach((item)=>{ %>
+  <div class="card">
+    <div class="title">
+      <h1><%=item.title%></h1>
+      <p class="date"><%= item.date.toLocaleDateString() %></p>
+    </div>
+
+    <div class="content">
+      <p><%=item.confession%></p>
+    </div>
+    <div class="details">
+      <p><%=item.username%></p>
+      <a class="delete-btn" href="delete_post/<%=item.id%>">Delete</a>
+    </div>
+  </div>
+  <% }) %>
+</div>
