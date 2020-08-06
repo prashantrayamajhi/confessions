@@ -29,7 +29,7 @@
 
   <% }}) %>
   <!-------------------------------------------------------------->
-  <% confessions.reverse().forEach((item)=>{ %> <% if(item.level === 'user') {%>
+  <% confessions.forEach((item)=>{ %> <% if(item.level === 'user') {%>
   <div class="card">
     <div class="title">
       <h1><%=item.title%></h1>
