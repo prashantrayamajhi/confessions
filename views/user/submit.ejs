@@ -30,13 +30,19 @@
         />
       </div>
       <div class="form-group">
-        <textarea name="confession" placeholder="Confession" required>
+        <textarea name="confession" required>
         <%= typeof confession != 'undefined' ? confession : ''%></textarea
         >
       </div>
       <input type="hidden" name="level" value="user" />
       <div class="form-group">
-        <button type="submit" class="form-btn">Submit</button>
+        <button
+          type="submit"
+          class="form-btn"
+          onclick="this.disabled=true;this.value='Sending, please wait...';this.form.submit();"
+        >
+          Submit
+        </button>
       </div>
     </form>
   </div>

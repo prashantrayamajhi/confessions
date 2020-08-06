@@ -76,7 +76,15 @@ router.post("/submit", (req, res) => {
           if (err) {
             console.log(err);
           } else {
-            res.redirect("back");
+            Confession.find((err, confessions) => {
+              if (err) {
+                console.log(err);
+              } else {
+                res.render("user/home", {
+                  confessions,
+                });
+              }
+            });
           }
         });
       })
