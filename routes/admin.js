@@ -32,7 +32,7 @@ router.get("/delete/:id", checkAuthenticated, checkAdmin, (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      req.redirect(url.parse(req.url).pathname);
+      res.render("login");
     }
   });
 });
