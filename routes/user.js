@@ -1,27 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const Confession = require("./../models/Confessions");
-const Announcement = require("./../models/Announcement");
-
-let announcementsCollection = [];
 
 router.get("/", checkAuthenticated, (req, res) => {
-  announcementsCollection = [];
-  Announcement.find((err, a) => {
-    if (err) {
-      console.log(err);
-    } else {
-      announcementsCollection.push(a);
-    }
-  });
-
   Confession.find((err, confessions) => {
     if (err) {
       console.log(err);
     } else {
       res.render("user/home", {
         confessions,
-        announcement: announcementsCollection,
       });
     }
   });
@@ -29,7 +16,6 @@ router.get("/", checkAuthenticated, (req, res) => {
 
 router.get("/submit", checkAuthenticated, (req, res) => {
   const username = req.user.username;
-
   res.render("user/submit", { username: username });
 });
 
@@ -90,9 +76,7 @@ router.post("/submit", (req, res) => {
           if (err) {
             console.log(err);
           } else {
-            res.render("user/home", {
-              confessions,
-            });
+            res.redirect("back");
           }
         });
       })

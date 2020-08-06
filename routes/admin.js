@@ -4,28 +4,15 @@ const passport = require("passport");
 const url = require("url");
 const Confession = require("./../models/Confessions");
 const Users = require("./../models/Users");
-const Announcement = require("./../models/Announcement");
-
-let announcementsCollection = [];
 
 router.get("/", checkAuthenticated, checkAdmin, (req, res) => {
-  console.log(req.user.role);
   res.render("admin/home");
 });
 
 router.get("/posts", checkAuthenticated, checkAdmin, (req, res) => {
-  announcementsCollection = [];
-  Announcement.find((err, a) => {
-    if (err) {
-      console.log(err);
-    } else {
-      announcementsCollection.push(a);
-    }
-  });
   Confession.find((err, confessions) => {
     res.render("admin/posts", {
       confessions,
-      announcement: announcementsCollection,
     });
   });
 });
@@ -59,7 +46,7 @@ router.get(
       if (err) {
         console.log(err);
       } else {
-        req.render("back");
+        res.render("login");
       }
     });
   }
@@ -84,18 +71,23 @@ router.get("/logout", (req, res) => {
 
 router.post("/submit", checkAuthenticated, checkAdmin, (req, res) => {
   const errors = [];
-  let announcement = req.body.announcement;
-  announcement = announcement.trim();
 
-  if (announcement === "") {
+  let title = req.body.title;
+  let confession = req.body.confession;
+  let level = req.body.level;
+  confession = confession.trim();
+
+  if (confession === "") {
     errors.push({ msg: "Announcements Cannot be Empty!" });
   }
 
   if (errors.length > 0) {
-    res.render("admin/home", { errors, announcement });
+    res.render("admin/home", { errors, confession });
   } else {
-    let a = new Announcement({
-      content: announcement,
+    let a = new Confession({
+      title: title,
+      confession: confession,
+      level: level,
     });
     a.save().then(() => {
       res.redirect("back");

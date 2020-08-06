@@ -23,11 +23,13 @@
 <div class="form-container">
   <div class="right">
     <form class="form" method="post" action="/admin/submit">
+      <input type="hidden" name="title" value="Admin Announcement" />
       <div class="form-group">
-        <textarea name="announcement" placeholder="announcement" required>
-<%= typeof announcement != 'undefined' ? announcement : ''%></textarea
+        <textarea name="confession" required>
+<%= typeof confession != 'undefined' ? confession : ''%></textarea
         >
       </div>
+      <input type="hidden" value="admin" name="level" />
       <div class="form-group">
         <button type="submit" class="form-btn">Submit</button>
       </div>

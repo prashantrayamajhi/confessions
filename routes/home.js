@@ -4,20 +4,8 @@ const bcrypt = require("bcryptjs");
 const User = require("./../models/Users");
 const passport = require("passport");
 const Confession = require("./../models/Confessions");
-const Announcement = require("./../models/Announcement");
-
-let announcementsCollection = [];
 
 router.get("/", checkAuthenticated, (req, res) => {
-  announcementsCollection = [];
-  Announcement.find((err, a) => {
-    if (err) {
-      console.log(err);
-    } else {
-      announcementsCollection.push(a);
-    }
-  });
-
   Confession.find((err, confessions) => {
     if (err) {
       console.log(err);
@@ -25,7 +13,6 @@ router.get("/", checkAuthenticated, (req, res) => {
       if (req.user.role !== "admin") {
         res.render("user/home", {
           confessions,
-          announcement: announcementsCollection,
         });
       } else {
         res.render("admin/home", { role: req.user.role });

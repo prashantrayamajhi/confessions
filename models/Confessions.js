@@ -16,6 +16,11 @@ const ConfessionSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  level: {
+    type: "String",
+    default: "user",
+    enum: ["user", "admin"],
+  },
 });
 
 module.exports = mongoose.model("Confession", ConfessionSchema);
