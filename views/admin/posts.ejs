@@ -4,9 +4,14 @@
   </div>
   <ul class="navlist">
     <li class="nav-item">
-      <a href="/user/submit" class="nav-link signup">Submit</a>
+      <a href="/admin/" class="nav-link">Home</a>
     </li>
-    <li class="nav-item"><a href="/user/logout" class="nav-link">Logout</a></li>
+    <li class="nav-item">
+      <a href="/admin/users" class="nav-link">Users</a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/logout" class="nav-link signup">Logout</a>
+    </li>
   </ul>
 </nav>
 
@@ -25,11 +30,17 @@
     <div class="content">
       <p><%=item.confession%></p>
     </div>
+    <div class="details">
+      <p><%=item.username%></p>
+      <a class="delete-btn" href="delete_post/<%=item.id%>">Delete</a>
+    </div>
   </div>
 
   <% }}) %>
-  <!-------------------------------------------------------------->
-  <% confessions.reverse().forEach((item)=>{ %> <% if(item.level === 'user') {%>
+  <!------------------------------------------------------------------>
+  <% confessions.reverse().forEach((item)=>{ %>
+  <!---->
+  <% if(item.level === 'user') {%>
   <div class="card">
     <div class="title">
       <h1><%=item.title%></h1>
@@ -38,6 +49,10 @@
 
     <div class="content">
       <p><%=item.confession%></p>
+    </div>
+    <div class="details">
+      <p><%=item.username%></p>
+      <a class="delete-btn" href="delete_post/<%=item.id%>">Delete</a>
     </div>
   </div>
   <% }}) %>

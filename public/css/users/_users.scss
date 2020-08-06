@@ -1,0 +1,35 @@
+.users-container {
+  margin: 50px 0;
+  .users-table {
+    width: 70%;
+    margin: auto;
+    thead {
+      th {
+        font-size: 20px;
+        letter-spacing: 2px;
+      }
+    }
+    tr {
+      td {
+        font-size: 18px;
+        letter-spacing: 2px;
+        padding: 7px;
+      }
+      .options {
+        text-align: center;
+      }
+      .sn {
+        text-align: center;
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .users-container {
+    .users-table {
+      width: 95%;
+      margin: auto;
+    }
+  }
+}

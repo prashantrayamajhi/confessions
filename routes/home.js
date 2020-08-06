@@ -10,7 +10,13 @@ router.get("/", checkAuthenticated, (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      res.render("user/home.ejs", { confessions: confessions });
+      if (req.user.role !== "admin") {
+        res.render("user/home", {
+          confessions,
+        });
+      } else {
+        res.render("admin/home", { role: req.user.role });
+      }
     }
   });
 });
@@ -104,7 +110,7 @@ router.post("/signup", (req, res) => {
 // ------------------------------------------------------------ //
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", {
-    successRedirect: "/user/",
+    successRedirect: "/",
     failureRedirect: "/login",
     failureFlash: true,
   })(req, res, next);
