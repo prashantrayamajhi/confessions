@@ -22,6 +22,7 @@
     <thead>
       <th>S.N</th>
       <th>Username</th>
+      <th>Role</th>
       <th>Options</th>
     </thead>
     <% let sn = 1; %> <% user.forEach((account)=>{ %>
@@ -29,6 +30,9 @@
       <td class="sn"><%=sn%></td>
       <td>
         <%=account.username%>
+      </td>
+      <td>
+        <%=account.role%>
       </td>
       <td class="options">
         <a href="/admin/edit/<%=account.edit%>">Edit</a> |

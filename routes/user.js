@@ -1,21 +1,35 @@
 const express = require("express");
 const router = express.Router();
 const Confession = require("./../models/Confessions");
+const Announcement = require("./../models/Announcement");
+
+let announcementsCollection = [];
 
 router.get("/", checkAuthenticated, (req, res) => {
+  announcementsCollection = [];
+  Announcement.find((err, a) => {
+    if (err) {
+      console.log(err);
+    } else {
+      announcementsCollection.push(a);
+    }
+  });
+
   Confession.find((err, confessions) => {
     if (err) {
       console.log(err);
     } else {
-      res.render("user/home.ejs", {
-        confessions: confessions,
+      res.render("user/home", {
+        confessions,
+        announcement: announcementsCollection,
       });
     }
   });
 });
 
-router.get("/submit", (req, res) => {
+router.get("/submit", checkAuthenticated, (req, res) => {
   const username = req.user.username;
+
   res.render("user/submit", { username: username });
 });
 
@@ -47,7 +61,6 @@ router.post("/submit", (req, res) => {
   let title = req.body.title;
   let confession = req.body.confession;
   let username = req.body.username;
-  console.log(username);
   title = title.trim();
   confession = confession.trim();
 
@@ -64,7 +77,7 @@ router.post("/submit", (req, res) => {
   }
 
   if (errors.length > 0) {
-    res.render("user/submit", { errors, title, confession });
+    res.render("user/submit", { errors, username, title, confession });
   } else {
     const c = new Confession({
       title: title,
@@ -73,7 +86,15 @@ router.post("/submit", (req, res) => {
     });
     c.save()
       .then((text) => {
-        res.redirect("/login");
+        Confession.find((err, confessions) => {
+          if (err) {
+            console.log(err);
+          } else {
+            res.render("user/home", {
+              confessions,
+            });
+          }
+        });
       })
       .catch((e) => {
         console.log(e);

@@ -16,3 +16,21 @@
 </nav>
 
 <!----------------------------------------------------------------------------------->
+
+<div class="error-message-wrapper">
+  <%-include("./../partials/messages")-%>
+</div>
+<div class="form-container">
+  <div class="right">
+    <form class="form" method="post" action="/admin/submit">
+      <div class="form-group">
+        <textarea name="announcement" placeholder="announcement" required>
+<%= typeof announcement != 'undefined' ? announcement : ''%></textarea
+        >
+      </div>
+      <div class="form-group">
+        <button type="submit" class="form-btn">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

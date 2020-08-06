@@ -1,13 +1,10 @@
 const mongoose = require("mongoose");
 
 const AnnouncementSchema = mongoose.Schema({
-  title: {
+  content: {
     type: String,
   },
-  Content: {
-    type: String,
-  },
-  Date: {
+  date: {
     type: Date,
     default: Date.now,
   },
