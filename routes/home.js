@@ -55,15 +55,15 @@ router.post("/signup", (req, res) => {
   password = password.trim();
   confirm_password = confirm_password.trim();
 
-  if (password.length < 6 || password === "") {
+  if (password.length < 4 || password === "") {
     errors.push({ msg: "Password too short!" });
   }
 
   if (password !== confirm_password) {
     errors.push({ msg: "Passwords don't match!  " });
   }
-  if (username.length < 5 || username === "") {
-    errors.push({ msg: "Invalid username!" });
+  if (username.length < 4 || username === "") {
+    errors.push({ msg: "Username too short!" });
   }
 
   if (errors.length > 0) {

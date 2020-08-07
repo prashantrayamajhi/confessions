@@ -32,7 +32,13 @@ router.get("/delete/:id", checkAuthenticated, checkAdmin, (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      res.render("login");
+      Users.find((err, user) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.render("admin/users", { user: user });
+        }
+      });
     }
   });
 });
