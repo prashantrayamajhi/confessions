@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Confession = require("./../models/Confessions");
+const { response } = require("express");
 
 router.get("/", checkAuthenticated, (req, res) => {
   Confession.find((err, confessions) => {
@@ -80,9 +81,7 @@ router.post("/submit", (req, res) => {
               if (err) {
                 console.log(err);
               } else {
-                res.render("user/home", {
-                  confessions,
-                });
+                res.render("user/home", { confessions, path: "user/home" });
               }
             });
           }

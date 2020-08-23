@@ -52,6 +52,7 @@ router.post("/signup", (req, res) => {
   const errors = [];
   let { username, password, confirm_password } = req.body;
   username = username.trim();
+  username = username.toLowerCase();
   password = password.trim();
   confirm_password = confirm_password.trim();
 
